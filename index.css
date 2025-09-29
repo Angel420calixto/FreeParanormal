@@ -422,7 +422,7 @@ body {
     box-shadow: 0 5px 15px rgba(45, 140, 255, 0.3);
 }
 
-/* Photo Evidence Section */
+/* Photo Evidence Section - CORREGIDO */
 .photo-evidence {
     background-color: #020106;
     padding: 6rem 0;
@@ -430,7 +430,7 @@ body {
 
 .photo-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 3 elementos por fila */
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -471,7 +471,7 @@ body {
     text-align: center;
 }
 
-/* Video Section MODIFICADA */
+/* Video Section - CORREGIDO */
 .video-section {
     padding: 6rem 0;
     background: rgba(8, 8, 8, 0.948);
@@ -479,7 +479,7 @@ body {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 3 elementos por fila */
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -555,7 +555,7 @@ body {
     color: var(--color-text-secondary);
 }
 
-/* Famous Cases Section */
+/* Famous Cases Section - CORREGIDO */
 .famous-cases {
     background-color: #020106;
     padding: 6rem 0;
@@ -563,7 +563,7 @@ body {
 
 .cases-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr); /* 3 elementos por fila */
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -1279,6 +1279,18 @@ body {
     transform: translateY(-2px);
 }
 
+/* Responsive para tablets */
+@media (max-width: 1024px) {
+    .photo-gallery,
+    .video-grid,
+    .cases-grid,
+    .photo-gallery-additional,
+    .video-grid-additional,
+    .cases-grid-additional {
+        grid-template-columns: repeat(2, 1fr); /* 2 elementos por fila en tablets */
+    }
+}
+
 /* Carrusel para móviles */
 @media (max-width: 768px) {
     .photo-gallery,
@@ -1399,26 +1411,26 @@ body {
     }
 }
 
-/* Estilos para escritorio */
+/* Estilos para escritorio - CORREGIDO */
 @media (min-width: 769px) {
     .photo-gallery-additional,
     .video-grid-additional,
     .cases-grid-additional {
-        display: grid !important;
+        display: none !important;
         gap: 2rem;
         margin-top: 2rem;
     }
 
     .photo-gallery-additional {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .video-grid-additional {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .cases-grid-additional {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .btn-expand.expanded {
@@ -1431,10 +1443,7 @@ body {
         font-size: 2rem;
     }
 
-    .voting-options,
-    .photo-gallery,
-    .video-grid,
-    .cases-grid {
+    .voting-options {
         grid-template-columns: 1fr;
     }
 
@@ -1473,13 +1482,111 @@ body {
     }
 
     .newsletter-form button {
-        border-radius: 0 0 10px 10px;
+       .footer-logo {
+    justify-content: center;
+}
     }
-
-    .video-modal {
-        width: 98%;
-        max-width: 98%;
+/* Estilos para móviles muy pequeños */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 1rem;
+    }
+    
+    .hero {
+        padding: 0 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .voting-section,
+    .photo-evidence,
+    .video-section,
+    .famous-cases,
+    .user-stories,
+    .news-carousel {
+        padding: 4rem 0;
+    }
+    
+    .voting-options {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .photo-gallery,
+    .video-grid,
+    .cases-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .stories-form,
+    .stories-list {
+        padding: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        padding: 0.7rem 0.8rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .carousel-btn {
+        display: none;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
         border-radius: 10px;
+    }
+    
+    .newsletter-form input {
+        border-radius: 10px 10px 0 0;
+    }
+    
+    .newsletter-form button {
+        border-radius: 0 0 10px 10px;
+        padding: 1rem;
+    }
+    
+    .footer-content {
+        gap: 1.5rem;
+    }
+    
+    .footer-section {
+        padding: 0 0.5rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .footer-links a:hover {
+        transform: none;
+    }
+    
+    .video-modal {
+        width: 95%;
+        margin: 0.5rem;
     }
     
     .video-modal video {
@@ -1488,52 +1595,132 @@ body {
     
     .close-modal {
         top: -30px;
+        right: -5px;
         font-size: 1.5rem;
     }
+}
 
-    .container {
-        padding: 0 1rem;
+/* Estilos de accesibilidad y mejoras adicionales */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
 }
 
-/* Efecto de apertura suave para modal */
-.modal {
-    animation: modalFadeIn 0.3s ease-out;
-}
-
-@keyframes modalFadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
+/* Mejoras de contraste para accesibilidad */
+@media (prefers-contrast: high) {
+    :root {
+        --color-text: #ffffff;
+        --color-text-secondary: #cccccc;
+        --color-border: rgba(255, 255, 255, 0.3);
     }
-    to {
-        opacity: 1;
-        transform: scale(1);
+    
+    .btn-secondary {
+        border-color: #ffffff;
     }
 }
 
-/* Mejora para el botón de cerrar */
-.close-modal {
-    position: absolute;
-    top: -45px;
-    right: -5px;
-    color: white;
-    font-size: 2.2rem;
-    cursor: pointer;
-    background: none;
-    border: none;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Modo oscuro forzado */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #000000;
+    }
+    
+    .main-header {
+        background: rgba(0, 0, 0, 0.95);
+    }
+}
+
+/* Estilos para impresión */
+@media print {
+    .main-header,
+    .hero-scroll,
+    .hero-buttons,
+    .btn-vote,
+    .stories-form,
+    .carousel-btn,
+    .main-footer {
+        display: none !important;
+    }
+    
+    body {
+        color: #000000;
+        background: #ffffff;
+    }
+    
+    .hero {
+        height: auto;
+        color: #000000;
+    }
+    
+    .text-gradient {
+        background: none;
+        -webkit-text-fill-color: #000000;
+        color: #000000;
+    }
+}
+
+/* Correcciones finales y optimizaciones */
+.hero-background-image {
+    background-attachment: fixed;
+}
+
+/* Mejora del rendimiento para transformaciones */
+.voting-option,
+.photo-item,
+.video-card,
+.case-card {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Estilos para elementos de carga */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
-    transition: all 0.3s ease;
-    z-index: 2001;
+    border-top-color: var(--color-accent-blue);
+    animation: spin 1s ease-in-out infinite;
 }
 
-.close-modal:hover {
-    color: var(--color-accent-blue);
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.1);
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
+
+/* Estados de focus para accesibilidad */
+.btn:focus,
+.nav-menu a:focus,
+.form-group input:focus,
+.form-group textarea:focus,
+.video-card:focus {
+    outline: 2px solid var(--color-accent-blue);
+    outline-offset: 2px;
+}
+
+/* Mejoras de scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Corrección para Safari */
+@supports (-webkit-touch-callout: none) {
+    .hero {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Estilos para high-DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-background-image {
+        background-image: url('hero-background@2x.jpg');
+    }
+}
+
+/* FIN DEL CSS */
