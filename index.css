@@ -21,12 +21,20 @@
     box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
 body {
     font-family: var(--font-primary);
     color: var(--color-text);
     background-color: var(--color-primary);
     line-height: 1.6;
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
 }
 
 /* Video Background */
@@ -281,11 +289,13 @@ body {
     }
 }
 
-/* Container */
+/* Container - CORREGIDO */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1.5rem;
+    width: 100%;
+    position: relative;
 }
 
 /* Section Titles */
@@ -401,6 +411,8 @@ body {
 .photo-evidence {
     background-color: #020106;
     padding: 6rem 0;
+    position: relative;
+    width: 100%;
 }
 
 .photo-gallery {
@@ -450,6 +462,8 @@ body {
 .video-section {
     padding: 6rem 0;
     background: rgba(8, 8, 8, 0.948);
+    position: relative;
+    width: 100%;
 }
 
 .video-grid {
@@ -533,6 +547,8 @@ body {
 .famous-cases {
     background-color: #020106;
     padding: 6rem 0;
+    position: relative;
+    width: 100%;
 }
 
 .cases-grid {
@@ -612,6 +628,8 @@ body {
 .user-stories {
     padding: 6rem 0;
     background: rgba(3, 3, 3, 0.948);
+    position: relative;
+    width: 100%;
 }
 
 .stories-container {
@@ -731,6 +749,8 @@ body {
 .news-carousel {
     background-color: #020106;
     padding: 6rem 0;
+    position: relative;
+    width: 100%;
 }
 
 .carousel-container {
@@ -931,6 +951,7 @@ body {
     border-top: 1px solid var(--color-border);
     position: relative;
     overflow: hidden;
+    width: 100%;
 }
 
 .footer-content {
@@ -1135,50 +1156,30 @@ body {
     color: var(--color-accent-green);
 }
 
-/* ===== MEJORAS RESPONSIVE Y EXPANDIBLES ===== */
-
-/* Contenido adicional expandible */
-.photo-gallery-additional,
-.video-grid-additional,
-.cases-grid-additional {
-    display: none;
-    animation: fadeInUp 0.5s ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Botones expand */
-.btn-expand {
-    background: transparent;
-    color: var(--color-text);
-    border: 2px solid rgba(168, 10, 28, 0.3);
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    font-family: var(--font-primary);
-}
-
-.btn-expand:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--color-text);
-    transform: translateY(-2px);
-}
-
-/* ===== CORRECCIONES PARA MÓVIL - ELEMENTOS A PANTALLA COMPLETA ===== */
+/* ===== CORRECCIONES CRÍTICAS PARA MÓVIL - EVITAR DESPLAZAMIENTO ===== */
 
 @media (max-width: 768px) {
+    /* Asegurar que el body no se desplace */
+    body {
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+    /* Contenedor principal seguro */
+    .container {
+        padding: 0 1rem;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
     /* Hero responsive */
+    .hero {
+        padding: 0 1rem;
+    }
+    
     .hero-title {
         font-size: 2.5rem;
     }
@@ -1198,7 +1199,7 @@ body {
         text-align: center;
     }
 
-    /* Galerías como carrusel horizontal a pantalla completa */
+    /* GALERÍAS MÓVIL - CORREGIDO SIN DESPLAZAMIENTO */
     .photo-gallery,
     .video-grid,
     .cases-grid {
@@ -1206,12 +1207,13 @@ body {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         scroll-behavior: smooth;
-        gap: 0;
-        margin: 0 -1.5rem;
-        padding: 1rem 1.5rem;
+        gap: 1rem;
+        margin: 0;
+        padding: 1rem 0;
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         -ms-overflow-style: none;
-        -webkit-overflow-scrolling: touch;
     }
 
     .photo-gallery::-webkit-scrollbar,
@@ -1223,17 +1225,24 @@ body {
     .photo-item,
     .video-card,
     .case-card {
-        flex: 0 0 calc(100vw - 3rem);
+        flex: 0 0 calc(100vw - 2rem);
         scroll-snap-align: start;
-        margin-right: 1.5rem;
+        margin: 0 0.5rem;
         min-width: 0;
         transform: none !important;
+        width: calc(100vw - 2rem);
+    }
+
+    .photo-item:first-child,
+    .video-card:first-child,
+    .case-card:first-child {
+        margin-left: 1rem;
     }
 
     .photo-item:last-child,
     .video-card:last-child,
     .case-card:last-child {
-        margin-right: 0;
+        margin-right: 1rem;
     }
 
     /* Eliminar efectos hover en móvil */
@@ -1251,6 +1260,18 @@ body {
         width: 100%;
         height: 250px;
         object-fit: cover;
+    }
+
+    /* Asegurar que las secciones no se salgan */
+    .photo-evidence,
+    .video-section,
+    .famous-cases,
+    .user-stories,
+    .news-carousel,
+    .voting-section {
+        padding: 4rem 1rem;
+        width: 100%;
+        overflow: hidden;
     }
 
     /* Contenido adicional oculto en móvil */
@@ -1275,6 +1296,7 @@ body {
         flex-direction: column;
         padding: 2rem;
         transition: left 0.3s ease;
+        z-index: 1000;
     }
 
     .nav-menu.active {
@@ -1288,10 +1310,16 @@ body {
     /* Ajustes de sección */
     .section-title {
         font-size: 2rem;
+        padding: 0 1rem;
+    }
+
+    .section-subtitle {
+        padding: 0 1rem;
     }
 
     .stories-container {
         grid-template-columns: 1fr;
+        padding: 0 1rem;
     }
 
     /* Modal de video mejorado para móvil */
@@ -1299,8 +1327,8 @@ body {
         width: 95vw;
         height: auto;
         max-width: none;
-        margin: 0;
-        border-radius: 0;
+        margin: 0 2.5vw;
+        border-radius: 10px;
     }
     
     .video-modal video {
@@ -1326,11 +1354,13 @@ body {
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+        padding: 0 1rem;
     }
 
     .footer-bottom-content {
         flex-direction: column;
         text-align: center;
+        padding: 0 1rem;
     }
 
     .footer-badges {
@@ -1376,14 +1406,6 @@ body {
 
 /* Estilos para móviles muy pequeños */
 @media (max-width: 480px) {
-    .container {
-        padding: 0 1rem;
-    }
-    
-    .hero {
-        padding: 0 1rem;
-    }
-    
     .hero-title {
         font-size: 2rem;
         line-height: 1.3;
@@ -1400,15 +1422,6 @@ body {
     .section-subtitle {
         font-size: 1rem;
         margin-bottom: 2rem;
-    }
-    
-    .voting-section,
-    .photo-evidence,
-    .video-section,
-    .famous-cases,
-    .user-stories,
-    .news-carousel {
-        padding: 4rem 0;
     }
     
     .voting-options {
@@ -1462,34 +1475,10 @@ body {
     }
 }
 
-/* Estilos de accesibilidad */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-}
-
-/* Mejoras de contraste para accesibilidad */
-@media (prefers-contrast: high) {
-    :root {
-        --color-text: #ffffff;
-        --color-text-secondary: #cccccc;
-        --color-border: rgba(255, 255, 255, 0.3);
-    }
-    
-    .btn-secondary {
-        border-color: #ffffff;
-    }
-}
-
 /* Scroll suave */
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /* Estados de focus para accesibilidad */
@@ -1506,18 +1495,5 @@ html {
 @supports (-webkit-touch-callout: none) {
     .hero {
         height: -webkit-fill-available;
-    }
-}
-
-/* Indicadores de scroll para móvil */
-@media (max-width: 768px) {
-    .photo-gallery::after,
-    .video-grid::after,
-    .cases-grid::after {
-        content: '';
-        display: block;
-        width: 1.5rem;
-        height: 100%;
-        flex-shrink: 0;
     }
 }
