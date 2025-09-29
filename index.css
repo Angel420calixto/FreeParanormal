@@ -29,7 +29,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Video Background MODIFICADO */
+/* Video Background */
 .video-background {
     position: fixed;
     top: 0;
@@ -103,7 +103,6 @@ body {
     font-weight: 700;
 }
 
-/* Logo como imagen */
 .logo-image {
     height: 100px;
     width: auto;
@@ -282,30 +281,6 @@ body {
     }
 }
 
-/* Responsive para el Hero */
-@media (max-width: 768px) {
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .hero-buttons {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero {
-        padding: 0 1rem;
-    }
-}
 /* Container */
 .container {
     max-width: 1200px;
@@ -422,7 +397,7 @@ body {
     box-shadow: 0 5px 15px rgba(45, 140, 255, 0.3);
 }
 
-/* Photo Evidence Section - CORREGIDO */
+/* Photo Evidence Section */
 .photo-evidence {
     background-color: #020106;
     padding: 6rem 0;
@@ -430,7 +405,7 @@ body {
 
 .photo-gallery {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 elementos por fila */
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -471,7 +446,7 @@ body {
     text-align: center;
 }
 
-/* Video Section - CORREGIDO */
+/* Video Section */
 .video-section {
     padding: 6rem 0;
     background: rgba(8, 8, 8, 0.948);
@@ -479,7 +454,7 @@ body {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 elementos por fila */
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -502,7 +477,6 @@ body {
     overflow: hidden;
 }
 
-/* Videos reales en lugar de imágenes */
 .video-player {
     width: 100%;
     height: 100%;
@@ -555,7 +529,7 @@ body {
     color: var(--color-text-secondary);
 }
 
-/* Famous Cases Section - CORREGIDO */
+/* Famous Cases Section */
 .famous-cases {
     background-color: #020106;
     padding: 6rem 0;
@@ -563,7 +537,7 @@ body {
 
 .cases-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 elementos por fila */
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 3rem;
 }
@@ -914,7 +888,7 @@ body {
     border-radius: 10px;
 }
 
-/* Modal para videos MODIFICADO */
+/* Modal para videos */
 .video-modal {
     width: 90%;
     max-width: 900px;
@@ -1161,84 +1135,6 @@ body {
     color: var(--color-accent-green);
 }
 
-/* Efecto de partículas cósmicas */
-.cosmic-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.particle {
-    position: absolute;
-    background: rgba(255, 45, 55, 0.927);
-    border-radius: 50%;
-    animation: float 6s infinite linear;
-}
-
-.particle:nth-child(1) {
-    width: 3px;
-    height: 3px;
-    top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.particle:nth-child(2) {
-    width: 2px;
-    height: 2px;
-    top: 60%;
-    left: 80%;
-    animation-delay: 2s;
-}
-
-.particle:nth-child(3) {
-    width: 4px;
-    height: 4px;
-    top: 40%;
-    left: 40%;
-    animation-delay: 4s;
-}
-
-.particle:nth-child(4) {
-    width: 2px;
-    height: 2px;
-    top: 80%;
-    left: 30%;
-    animation-delay: 1s;
-}
-
-.particle:nth-child(5) {
-    width: 3px;
-    height: 3px;
-    top: 30%;
-    left: 70%;
-    animation-delay: 3s;
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0;
-    }
-
-    10% {
-        opacity: 1;
-    }
-
-    90% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateY(-100px) translateX(50px);
-        opacity: 0;
-    }
-}
-
 /* ===== MEJORAS RESPONSIVE Y EXPANDIBLES ===== */
 
 /* Contenido adicional expandible */
@@ -1279,32 +1175,43 @@ body {
     transform: translateY(-2px);
 }
 
-/* Responsive para tablets */
-@media (max-width: 1024px) {
-    .photo-gallery,
-    .video-grid,
-    .cases-grid,
-    .photo-gallery-additional,
-    .video-grid-additional,
-    .cases-grid-additional {
-        grid-template-columns: repeat(2, 1fr); /* 2 elementos por fila en tablets */
-    }
-}
+/* ===== CORRECCIONES PARA MÓVIL - ELEMENTOS A PANTALLA COMPLETA ===== */
 
-/* Carrusel para móviles */
 @media (max-width: 768px) {
+    /* Hero responsive */
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Galerías como carrusel horizontal a pantalla completa */
     .photo-gallery,
     .video-grid,
     .cases-grid {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        gap: 1rem;
-        padding: 1rem 0;
+        scroll-behavior: smooth;
+        gap: 0;
         margin: 0 -1.5rem;
-        padding-left: 1.5rem;
+        padding: 1rem 1.5rem;
         scrollbar-width: none;
         -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
     }
 
     .photo-gallery::-webkit-scrollbar,
@@ -1316,23 +1223,44 @@ body {
     .photo-item,
     .video-card,
     .case-card {
-        flex: 0 0 calc(85% - 1rem);
+        flex: 0 0 calc(100vw - 3rem);
         scroll-snap-align: start;
-        min-width: 280px;
+        margin-right: 1.5rem;
+        min-width: 0;
+        transform: none !important;
     }
 
-    /* Ocultar elementos adicionales en móvil */
+    .photo-item:last-child,
+    .video-card:last-child,
+    .case-card:last-child {
+        margin-right: 0;
+    }
+
+    /* Eliminar efectos hover en móvil */
+    .photo-item:hover,
+    .video-card:hover,
+    .case-card:hover {
+        transform: none;
+    }
+
+    /* Imágenes y videos a pantalla completa */
+    .photo-item img,
+    .case-image img,
+    .video-thumbnail,
+    .video-player {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    /* Contenido adicional oculto en móvil */
     .photo-gallery-additional,
     .video-grid-additional,
     .cases-grid-additional {
         display: none !important;
     }
 
-    .btn-expand {
-        width: 100%;
-        max-width: 300px;
-    }
-
+    /* Navegación móvil */
     .menu-toggle {
         display: block;
     }
@@ -1357,18 +1285,7 @@ body {
         margin: 1rem 0;
     }
 
-    .hero-title {
-        font-size: 2.5rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
+    /* Ajustes de sección */
     .section-title {
         font-size: 2rem;
     }
@@ -1377,10 +1294,35 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .carousel-slide {
-        min-width: 100%;
+    /* Modal de video mejorado para móvil */
+    .video-modal {
+        width: 95vw;
+        height: auto;
+        max-width: none;
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    .video-modal video {
+        width: 100%;
+        height: auto;
+        max-height: 70vh;
+    }
+    
+    .close-modal {
+        top: 10px;
+        right: 10px;
+        font-size: 1.8rem;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
+    /* Footer móvil */
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1394,29 +1336,23 @@ body {
     .footer-badges {
         justify-content: center;
     }
+}
 
-    .video-modal {
-        width: 95%;
-        max-width: 95%;
-        margin: 1rem;
-    }
-    
-    .video-modal video {
-        max-height: 70vh;
-    }
-    
-    .close-modal {
-        top: -35px;
-        font-size: 1.8rem;
+/* Responsive para tablets */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .photo-gallery,
+    .video-grid,
+    .cases-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Estilos para escritorio - CORREGIDO */
+/* Estilos para escritorio */
 @media (min-width: 769px) {
     .photo-gallery-additional,
     .video-grid-additional,
     .cases-grid-additional {
-        display: none !important;
+        display: none;
         gap: 2rem;
         margin-top: 2rem;
     }
@@ -1438,54 +1374,6 @@ body {
     }
 }
 
-@media (max-width: 480px) {
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .voting-options {
-        grid-template-columns: 1fr;
-    }
-
-    .carousel-btn {
-        display: none;
-    }
-
-    .main-footer {
-        padding: 3rem 0 0;
-    }
-
-    .footer-section {
-        text-align: center;
-    }
-
-    .footer-section h3::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .footer-logo {
-        justify-content: center;
-    }
-
-    .social-links {
-        justify-content: center;
-    }
-
-    .newsletter-form {
-        flex-direction: column;
-        border-radius: 10px;
-    }
-
-    .newsletter-form input {
-        border-radius: 10px 10px 0 0;
-    }
-
-    .newsletter-form button {
-       .footer-logo {
-    justify-content: center;
-}
-    }
 /* Estilos para móviles muy pequeños */
 @media (max-width: 480px) {
     .container {
@@ -1524,13 +1412,6 @@ body {
     }
     
     .voting-options {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .photo-gallery,
-    .video-grid,
-    .cases-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
@@ -1579,28 +1460,9 @@ body {
     .social-links {
         justify-content: center;
     }
-    
-    .footer-links a:hover {
-        transform: none;
-    }
-    
-    .video-modal {
-        width: 95%;
-        margin: 0.5rem;
-    }
-    
-    .video-modal video {
-        max-height: 60vh;
-    }
-    
-    .close-modal {
-        top: -30px;
-        right: -5px;
-        font-size: 1.5rem;
-    }
 }
 
-/* Estilos de accesibilidad y mejoras adicionales */
+/* Estilos de accesibilidad */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -1625,73 +1487,9 @@ body {
     }
 }
 
-/* Modo oscuro forzado */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000000;
-    }
-    
-    .main-header {
-        background: rgba(0, 0, 0, 0.95);
-    }
-}
-
-/* Estilos para impresión */
-@media print {
-    .main-header,
-    .hero-scroll,
-    .hero-buttons,
-    .btn-vote,
-    .stories-form,
-    .carousel-btn,
-    .main-footer {
-        display: none !important;
-    }
-    
-    body {
-        color: #000000;
-        background: #ffffff;
-    }
-    
-    .hero {
-        height: auto;
-        color: #000000;
-    }
-    
-    .text-gradient {
-        background: none;
-        -webkit-text-fill-color: #000000;
-        color: #000000;
-    }
-}
-
-/* Correcciones finales y optimizaciones */
-.hero-background-image {
-    background-attachment: fixed;
-}
-
-/* Mejora del rendimiento para transformaciones */
-.voting-option,
-.photo-item,
-.video-card,
-.case-card {
-    will-change: transform;
-    backface-visibility: hidden;
-}
-
-/* Estilos para elementos de carga */
-.loading-spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: var(--color-accent-blue);
-    animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
 }
 
 /* Estados de focus para accesibilidad */
@@ -1704,11 +1502,6 @@ body {
     outline-offset: 2px;
 }
 
-/* Mejoras de scroll suave */
-html {
-    scroll-behavior: smooth;
-}
-
 /* Corrección para Safari */
 @supports (-webkit-touch-callout: none) {
     .hero {
@@ -1716,11 +1509,15 @@ html {
     }
 }
 
-/* Estilos para high-DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .hero-background-image {
-        background-image: url('hero-background@2x.jpg');
+/* Indicadores de scroll para móvil */
+@media (max-width: 768px) {
+    .photo-gallery::after,
+    .video-grid::after,
+    .cases-grid::after {
+        content: '';
+        display: block;
+        width: 1.5rem;
+        height: 100%;
+        flex-shrink: 0;
     }
 }
-
-/* FIN DEL CSS */
