@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caso Travis Walton – Misterios Cósmicos</title>
+  <link rel="stylesheet" href="index.css">
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Estilos específicos para la presentación narrativa */
+    .presentation-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .story-section {
+        margin-bottom: 4rem;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .story-section:nth-child(2) { animation-delay: 0.2s; }
+    .story-section:nth-child(3) { animation-delay: 0.4s; }
+    .story-section:nth-child(4) { animation-delay: 0.6s; }
+    .story-section:nth-child(5) { animation-delay: 0.8s; }
+
+    .story-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 2rem 0;
+        border-bottom: 2px solid rgba(168, 10, 28, 0.3);
+    }
+
+    .story-title {
+        font-family: var(--font-heading);
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .story-subtitle {
+        font-size: 1.3rem;
+        color: var(--color-text-secondary);
+        font-style: italic;
+    }
+
+    .story-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--color-text-secondary);
+        margin-bottom: 2rem;
+    }
+
+    .story-content p {
+        margin-bottom: 1.5rem;
+        text-align: justify;
+    }
+
+    .highlight-box {
+        background: rgba(168, 10, 28, 0.1);
+        border-left: 4px solid var(--color-accent-blue);
+        padding: 2rem;
+        margin: 2rem 0;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .quote {
+        font-size: 1.2rem;
+        font-style: italic;
+        text-align: center;
+        color: var(--color-text);
+        margin: 2rem 0;
+        padding: 2rem;
+        position: relative;
+    }
+
+    .quote::before,
+    .quote::after {
+        content: '"';
+        font-size: 3rem;
+        color: var(--color-accent-blue);
+        position: absolute;
+        opacity: 0.3;
+    }
+
+    .quote::before {
+        top: 0;
+        left: 0;
+    }
+
+    .quote::after {
+        bottom: -1rem;
+        right: 0;
+    }
+
+    .quote-author {
+        display: block;
+        margin-top: 1rem;
+        font-size: 1rem;
+        color: var(--color-text-secondary);
+        font-style: normal;
+    }
+
+    .evidence-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+
+    .evidence-item {
+        background: rgba(15, 15, 20, 0.8);
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid rgba(168, 10, 28, 0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .evidence-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .evidence-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .evidence-caption {
+        padding: 1rem;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+        text-align: center;
+    }
+
+    .timeline {
+        position: relative;
+        margin: 3rem 0;
+        padding-left: 2rem;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--color-accent-blue);
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 2rem;
+        padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -2.3rem;
+        top: 0.5rem;
+        width: 12px;
+        height: 12px;
+        background: var(--color-accent-blue);
+        border-radius: 50%;
+        border: 3px solid var(--color-primary);
+    }
+
+    .timeline-time {
+        font-weight: bold;
+        color: var(--color-accent-blue);
+        margin-bottom: 0.5rem;
+    }
+
+    .document-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-accent-blue);
+        text-decoration: none;
+        margin: 1rem 0;
+        padding: 0.5rem 1rem;
+        background: rgba(168, 10, 28, 0.1);
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+
+    .document-link:hover {
+        background: rgba(168, 10, 28, 0.2);
+        transform: translateX(5px);
+    }
+
+    .conclusion {
+        background: rgba(168, 10, 28, 0.05);
+        border-radius: 15px;
+        padding: 3rem;
+        margin: 4rem 0;
+        text-align: center;
+        border: 1px solid rgba(168, 10, 28, 0.2);
+    }
+
+    .conclusion-title {
+        font-family: var(--font-heading);
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        color: var(--color-text);
+    }
+
+    /* Navegación entre casos */
+    .case-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(168, 10, 28, 0.3);
+    }
+
+    .nav-button {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 2rem;
+        background: rgba(168, 10, 28, 0.1);
+        border: 1px solid rgba(168, 10, 28, 0.3);
+        border-radius: 8px;
+        color: var(--color-text);
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+        background: rgba(168, 10, 28, 0.2);
+        transform: translateX(-5px);
+    }
+
+    .nav-button.next:hover {
+        transform: translateX(5px);
+    }
+
+    /* Header */
+    .header-caso {
+      background: linear-gradient(rgba(2, 1, 6, 0.8), rgba(2, 1, 6, 0.9)), url('https://images.unsplash.com/photo-1534796636918-44e7ba7a08f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 2rem 0;
+      position: relative;
+    }
+    
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo i {
+      margin-right: 0.5rem;
+      color: var(--color-accent-blue);
+    }
+    
+    .menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    .menu a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .menu a:hover {
+      color: var(--color-accent-blue);
+    }
+    
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 2rem;
+      background: #020106;
+      color: var(--color-text-secondary);
+      border-top: 1px solid rgba(168, 10, 28, 0.3);
+    }
+    
+    /* Elementos adicionales */
+    .testigos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .testigo-card {
+      background: rgba(25, 25, 35, 0.8);
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(168, 10, 28, 0.2);
+    }
+    
+    .testigo-card h4 {
+      color: var(--color-accent-blue);
+      margin-bottom: 0.5rem;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%;
+      margin-bottom: 1rem;
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, var(--color-accent-blue), var(--color-accent-purple));
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+      margin: 0.5rem;
+    }
+    
+    .btn-link:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .presentation-container {
+            padding: 1rem;
+        }
+
+        .story-title {
+            font-size: 2.2rem;
+        }
+
+        .evidence-gallery {
+            grid-template-columns: 1fr;
+        }
+
+        .case-navigation {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .nav-button {
+            justify-content: center;
+        }
+
+        .nav-bar {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        
+        .menu {
+          gap: 1.5rem;
+        }
+        
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+        
+        .testigos-grid {
+          grid-template-columns: 1fr;
+        }
+    }
+  </style>
+</head>
+<body>
+  <header class="header-caso">
+    <nav class="nav-bar">
+      <a href="index.html" class="logo">
+        <i class="fas fa-ufo"></i>
+        Misterios Cósmicos
+      </a>
+      <ul class="menu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="casos.html">Casos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="hero">
+      <h1>Caso Travis Walton (1975)</h1>
+      <p>La abducción en el Bosque Nacional de Apache-Sitgreaves</p>
+    </div>
+  </header>
+
+  <main class="presentation-container">
+    
+    <!-- Introducción -->
+    <section class="story-section">
+      <div class="story-header">
+        <h1 class="story-title">El Misterio de Travis Walton</h1>
+        <p class="story-subtitle">El leñador que desapareció cinco días frente a seis testigos</p>
+      </div>
+
+      <div class="story-content">
+        <p>En la fría tarde del 5 de noviembre de 1975, en las profundidades del Bosque Nacional de Apache-Sitgreaves en Arizona, siete leñadores fueron testigos de un evento que cambiaría sus vidas para siempre y se convertiría en uno de los casos de abducción más documentados y controvertidos de la historia.</p>
+
+        <div class="evidence-gallery">
+          <div class="evidence-item">
+            <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bosque Nacional Apache-Sitgreaves" class="evidence-image">
+            <div class="evidence-caption">Bosque Nacional Apache-Sitgreaves, escenario del incidente</div>
+          </div>
+          <div class="evidence-item">
+            <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Equipo de leñadores años 70" class="evidence-image">
+            <div class="evidence-caption">Equipo de leñadores en los años 70 (imagen referencial)</div>
+          </div>
+        </div>
+
+        <p>Travis Walton, un joven leñador de 22 años, se encontraba trabajando con su equipo cuando ocurrió lo impensable. Lo que comenzó como un avistamiento de luces extrañas culminaría con la desaparición de Walton durante cinco días completos, desatando una de las investigaciones más intensas en la historia de la ufología moderna.</p>
+      </div>
+    </section>
+
+    <!-- El Incidente -->
+    <section class="story-section">
+      <h2 style="color: var(--color-accent-blue); margin-bottom: 2rem; border-left: 4px solid var(--color-accent-blue); padding-left: 1rem;">La Tarde del Encuentro</h2>
+
+      <div class="story-content">
+        <p>Alrededor de las 6:15 p.m., mientras el equipo de leñadores regresaba de su jornada laboral, ocurrió lo inesperado. A través del parabrisas de su camión, vislumbraron un objeto luminoso que flotaba entre los árboles a pocos metros de la carretera.</p>
+
+        <div class="highlight-box">
+          <p><strong>Testimonio de Mike Rogers:</strong> "Al principio pensamos que era una estrella, pero luego comenzó a moverse de manera extraña. Cuando nos acercamos, vimos claramente que era un objeto metálico en forma de disco, emitiendo una luz intensa. Travis, sin pensarlo dos veces, saltó del camión y corrió hacia él."</p>
+        </div>
+
+        <p>Lo que sucedió en los siguientes minutos marcaría el comienzo de uno de los misterios más perdurables de la ufología. Mientras Walton se aproximaba al objeto, un rayo de luz azul verdosa lo golpeó, lanzándolo varios metros hacia atrás.</p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-time">6:15 PM</div>
+            <p>El equipo avista un objeto luminoso y se detiene a observarlo</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">6:20 PM</div>
+            <p>Travis Walton se baja del camión y se acerca corriendo hacia el objeto</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">6:22 PM</div>
+            <p>Un rayo de luz golpea a Walton, quien cae inconsciente</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">6:25 PM</div>
+            <p>El objeto asciende rápidamente y desaparece. Los testigos huyen del lugar</p>
+          </div>
+        </div>
+
+        <p>Temiendo por sus vidas, los seis testigos restantes huyeron del lugar. Cuando regresaron minutos después, no había rastro de Walton ni del objeto. Comenzaba así una búsqueda desesperada que capturaría la atención de todo el país.</p>
+      </div>
+    </section>
+
+    <!-- Los Testigos -->
+    <section class="story-section">
+      <h2 style="color: var(--color-accent-blue); margin-bottom: 2rem; border-left: 4px solid var(--color-accent-blue); padding-left: 1rem;">Los Siete Hombres que lo Vieron Todo</h2>
+
+      <div class="story-content">
+        <p>La credibilidad del caso Walton radica en la presencia de seis testigos adicionales, todos hombres trabajadores y escépticos por naturaleza, que corroboraron la historia inicial.</p>
+
+        <div class="testigos-grid">
+          <div class="testigo-card">
+            <h4>Travis Walton</h4>
+            <p>22 años, víctima de la abducción. Desapareció por 5 días completos.</p>
+          </div>
+          <div class="testigo-card">
+            <h4>Mike Rogers</h4>
+            <p>Jefe del equipo y primo de Walton. Conductor del camión.</p>
+          </div>
+          <div class="testigo-card">
+            <h4>Ken Peterson</h4>
+            <p>Miembro experimentado del equipo. Primer testigo en alertar a autoridades.</p>
+          </div>
+          <div class="testigo-card">
+            <h4>John Goulette</h4>
+            <p>Testigo directo. Pasó exitosamente la prueba de polígrafo.</p>
+          </div>
+          <div class="testigo-card">
+            <h4>Steve Pierce</h4>
+            <p>Miembro más joven del equipo. Su testimonio fue crucial.</p>
+          </div>
+          <div class="testigo-card">
+            <h4>Allen Dalis</h4>
+            <p>Testigo clave. Mantuvo su versión sin cambios por décadas.</p>
+          </div>
+          <div class="testigo-card">
+            <h4>Dwayne Smith</h4>
+            <p>Séptimo testigo. Corroboró todos los detalles del avistamiento.</p>
+          </div>
+        </div>
+
+        <div class="quote">
+          "Nunca olvidaré el terror que sentimos. Vimos cómo ese rayo de luz golpeaba a Travis y lo lanzaba por los aires. Pensamos que estaba muerto. Cuando volvimos, no había rastro de él."
+          <span class="quote-author">- Ken Peterson, miembro del equipo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- La Investigación -->
+    <section class="story-section">
+      <h2 style="color: var(--color-accent-blue); margin-bottom: 2rem; border-left: 4px solid var(--color-accent-blue); padding-left: 1rem;">La Búsqueda y la Evidencia</h2>
+
+      <div class="story-content">
+        <p>La desaparición de Walton desató una de las operaciones de búsqueda más extensas en la historia de Arizona. Durante cinco días, autoridades y voluntarios recorrieron el bosque sin encontrar rastro del joven leñador.</p>
+
+        <div class="evidence-gallery">
+          <div class="evidence-item">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pruebas de polígrafo" class="evidence-image">
+            <div class="evidence-caption">Pruebas de polígrafo administradas a los testigos</div>
+          </div>
+          <div class="evidence-item">
+            <img src="https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Documentos oficiales" class="evidence-image">
+            <div class="evidence-caption">Reportes oficiales del Departamento del Sheriff</div>
+          </div>
+        </div>
+
+        <p>El 10 de noviembre, Walton reapareció de manera tan misteriosa como había desaparecido. Fue encontrado desorientado y deshidratado junto a una carretera cerca de Heber, Arizona. Su relato de lo sucedido durante esos cinco días faltantes sería aún más extraordinario.</p>
+
+        <a href="https://www.theblackvault.com/casefiles/travis-walton-poligraph/" target="_blank" class="document-link">
+          <i class="fas fa-file-contract"></i>
+          Ver resultados completos de polígrafo
+        </a>
+
+        <a href="https://archives.gov/research/ufo" target="_blank" class="document-link">
+          <i class="fas fa-archive"></i>
+          Consultar archivos oficiales desclasificados
+        </a>
+      </div>
+    </section>
+
+    <!-- La Abducción -->
+    <section class="story-section">
+      <h2 style="color: var(--color-accent-blue); margin-bottom: 2rem; border-left: 4px solid var(--color-accent-blue); padding-left: 1rem;">Los Cinco Días Perdidos</h2>
+
+      <div class="story-content">
+        <p>Según el testimonio de Walton, después de ser alcanzado por el rayo de luz, despertó dentro de una nave espacial. Su descripción detallada incluye elementos que se han convertido en referentes de la fenomenología de abducciones:</p>
+
+        <div class="highlight-box">
+          <p><strong>Elementos clave del relato de Walton:</strong></p>
+          <ul>
+            <li>Seres de aproximadamente 1.5 metros de altura, con cabezas grandes y ojos oscuros</li>
+            <li>Una sala de examen médico con tecnología desconocida</li>
+            <li>Encuentro con seres humanoides más altos que parecían estar al mando</li>
+            <li>Sensación de tiempo distorsionado durante su cautiverio</li>
+            <li>Examen médico involuntario con instrumentos extraños</li>
+          </ul>
+        </div>
+
+        <div class="quote">
+          "Desperté en una mesa de examen. Había tres seres alrededor mío. Eran pequeños, con cabezas grandes y ojos oscuros que parecían negros. No sentí miedo, solo confusión. Luego llegó un ser más alto, parecido a un humano, que parecía estar a cargo y me tranquilizó."
+          <span class="quote-author">- Travis Walton</span>
+        </div>
+
+        <article class="evidencia">
+          <h3>Entrevista Exclusiva con Travis Walton</h3>
+          <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/5t06C5Kfw_0" frameborder="0" allowfullscreen></iframe>
+          </div>
+          <p>
+            En esta entrevista reciente, Walton reflexiona sobre su experiencia y cómo ha afectado su vida en las décadas posteriores al incidente.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Legado Cultural -->
+    <section class="story-section">
+      <h2 style="color: var(--color-accent-blue); margin-bottom: 2rem; border-left: 4px solid var(--color-accent-blue); padding-left: 1rem;">Legado y Impacto Cultural</h2>
+
+      <div class="story-content">
+        <p>El caso Travis Walton trascendió el ámbito de la ufología para convertirse en un fenómeno cultural. Su historia ha sido referenciada en numerosos documentales, programas de televisión y, más notablemente, en la película "Fire in the Sky" (1993).</p>
+
+        <div class="evidence-gallery">
+          <div class="evidence-item">
+            <img src="https://images.unsplash.com/photo-1489599809505-f2d4c5f6b0bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Película Fire in the Sky" class="evidence-image">
+            <div class="evidence-caption">Cartel de la película "Fire in the Sky" (1993)</div>
+          </div>
+          <div class="evidence-item">
+            <img src="https://images.unsplash.com/photo-1512070679279-8988d32161be?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Travis Walton actual" class="evidence-image">
+            <div class="evidence-caption">Travis Walton en años recientes</div>
+          </div>
+        </div>
+
+        <p>Aunque la representación cinematográfica difiere en algunos aspectos del relato original de Walton, la película generó un renovado interés en el caso y lo introdujo a nuevas generaciones de entusiastas de lo paranormal.</p>
+
+        <a href="https://www.travis-walton.com/" target="_blank" class="btn-link">
+          <i class="fas fa-external-link-alt"></i>
+          Sitio Oficial de Travis Walton
+        </a>
+
+        <a href="https://www.mufon.com/case-files" target="_blank" class="btn-link">
+          <i class="fas fa-search"></i>
+          Expediente MUFON del caso
+        </a>
+      </div>
+    </section>
+
+    <!-- Conclusión -->
+    <section class="story-section">
+      <div class="conclusion">
+        <h3 class="conclusion-title">Veredicto Final</h3>
+        <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary);">
+          Después de casi cinco décadas de análisis, el caso Travis Walton continúa desafiando toda explicación convencional. La combinación de múltiples testigos confiables, pruebas de polígrafo exitosas y la consistencia del relato a lo largo del tiempo lo sitúan entre los casos de abducción más convincentes jamás registrados.
+        </p>
+        <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-top: 1rem;">
+          Mientras escépticos y creyentes continúan debatiendo los detalles, lo cierto es que siete hombres experimentaron algo extraordinario en el bosque de Arizona aquel noviembre de 1975. Su historia permanece como un testimonio perdurable de uno de los mayores misterios de nuestro tiempo.
+        </p>
+      </div>
+    </section>
+
+    <!-- Navegación -->
+    <div class="case-navigation">
+      <a href="caso-armando-valdes.html" class="nav-button">
+        <i class="fas fa-arrow-left"></i>
+        Caso Anterior: Armando Valdés
+      </a>
+      <a href="casos.html" class="nav-button next">
+        Volver a Todos los Casos
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2023 Misterios Cósmicos – Fuente: Archivos del Sheriff del Condado de Navajo, MUFON, The Walton Experience, documentación oficial</p>
+  </footer>
+
+  <script>
+    // Efectos de revelado al hacer scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.story-section').forEach(section => {
+        section.style.animationPlayState = 'paused';
+        observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>
